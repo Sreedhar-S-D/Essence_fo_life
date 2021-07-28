@@ -1,0 +1,196 @@
+<html>
+<head>  
+<script>
+window.onload = function () {
+var a = ({{data | tojson}})
+console.log(a);
+var s = ({{status | tojson}})
+var d1 = []
+for (i=0;i<a.length;i++){
+    d1.push({label:a[i].name , y:a[i].value})
+}
+
+var d2 = []
+for (i=0;i<a.length;i++){
+    d2.push({label:a[i].name , y:a[i].post_death})
+}
+
+var d3 = []
+for (i=0;i<a.length;i++){
+    d3.push({label:a[i].name , y:a[i].alive})
+}
+
+var d4 = []
+for (i=0;i<a.length;i++){
+    d4.push({label:a[i].name , y:a[i].post_death_donation})
+}
+
+var d6 = []
+for (i=0;i<a.length;i++){
+    d6.push({label:a[i].name , y:a[i].alive_donation})
+}
+
+var total_d = []
+for ( i =0 ; i< a.length ; i++){
+    total_d.push({label:a[i].name , y:a[i].donation})
+}
+
+var total=0;
+var alive_death=0;
+for (i=0;i<a.length;i++){
+{
+    total=total+a[i].post_death_donation+a[i].alive_donation;
+    alive_death=alive_death+a[i].alive+a[i].post_death;
+}
+
+d5=[{label:"Total Transplantations",y:alive_death},{label:"Total Donations",y:total}];
+}
+    
+var chart = new CanvasJS.Chart("chartContainer", {
+    animationEnabled: true,
+    theme: "light2",
+    title:{
+        text: "Transplantation Analysis"
+    },
+    data: [{        
+        type: "line",
+        indexLabelFontSize: 16,
+        dataPoints: d1
+    }]
+});
+chart.render();
+var chart2 = new CanvasJS.Chart("post_death", {
+    animationEnabled: true,
+    theme: "light2",
+    title:{
+        text: "Post Death Donations"
+    },
+    legend: {
+       verticalAlign: "center",  // "top" , "bottom"
+       horizontalAlign: "right"  // "center" , "right"
+
+     },
+    data: [
+    //     {        
+    //     type: "column",
+    //     name: "Transplantations Post_Death",
+    //     showInLegend: true ,
+    //         indexLabelFontSize: 16,
+    //     dataPoints: d2
+    // },
+    {        
+        type: "column",
+        name: "Donations Post_Death",
+        showInLegend: true ,
+            indexLabelFontSize: 16,
+        dataPoints: d4
+    }]
+});
+chart2.render();
+
+var chart3 = new CanvasJS.Chart("alive", {
+    animationEnabled: true,
+    theme: "light2",
+    title:{
+        text: "Alive Donations"
+    },
+    legend: {
+       verticalAlign: "center",  // "top" , "bottom"
+       horizontalAlign: "right"  // "center" , "right"
+
+     },
+    data: [
+    // {        
+    //     type: "column",
+    //     name: "Transplantations Alive",
+    //     showInLegend: true ,
+    //     indexLabelFontSize: 16,
+    //     dataPoints: d3
+    // },
+    {        
+        type: "column",
+        name: "Donations Alive",
+        showInLegend: true ,
+        indexLabelFontSize: 16,
+        dataPoints: d6
+    }
+    ]
+});
+chart3.render();
+
+var newchart = new CanvasJS.Chart("donation", {
+    animationEnabled: true,
+    theme: "light2",
+    title:{
+        text: "Total Donations"
+    },
+    legend: {
+       verticalAlign: "center",  // "top" , "bottom"
+       horizontalAlign: "right"  // "center" , "right"
+
+     },
+    data: [
+    // {        
+    //     type: "column",
+    //     name: "Transplantations Alive",
+    //     showInLegend: true ,
+    //     indexLabelFontSize: 16,
+    //     dataPoints: d3
+    // },
+    {        
+        type: "column",
+        name: "Donations Alive",
+        showInLegend: true ,
+        indexLabelFontSize: 16,
+        dataPoints: total_d
+    }
+    ]
+});
+newchart.render();
+
+
+var chart4 = new CanvasJS.Chart("alive_death", {
+    animationEnabled: true,
+    theme: "light2",
+    title:{
+        text: "Total Transplantations vs Total Donations"
+    },
+    data: [{        
+        type: "column",
+        indexLabelFontSize: 16,
+        dataPoints: d5
+    }
+    ]
+});
+chart4.render();
+
+
+var chart5 = new CanvasJS.Chart("success_failure", {
+    animationEnabled: true,
+    theme: "light2",
+    title:{
+        text: "Success Vs Failure"
+    },
+    data: [{        
+        type: "column",
+        indexLabelFontSize: 16,
+        dataPoints: s
+    }
+    ]
+});
+chart5.render();
+}
+</script>
+</head>
+<body>
+<div id="donation" style="height: 300px; width: 100%;"></div>
+<div id="chartContainer" style="height: 300px; width: 100%;"></div>
+<div id="post_death" style="height: 300px; width: 100%;"></div>
+<div id="alive" style="height: 300px; width: 100%;"></div>
+
+<div id="alive_death" style="height: 300px; width: 100%;"></div>
+
+<div id="success_failure" style="height: 300px; width: 100%;"></div>
+<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+</body>
+</html>

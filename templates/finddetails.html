@@ -1,0 +1,278 @@
+<html>
+    <head>
+        <title>Find Details</title>
+        <style>
+        .i1
+        {
+            margin: 20px;
+        }
+        .navbar {
+            overflow: hidden;
+            background-color: #333;
+            position: fixed; 
+            top: 0;
+            width: 100%; 
+        }
+
+        .navbar a {
+            float: left;
+            display: block;
+            color: #f2f2f2;
+            text-align: center;
+            padding: 23px 16px; 
+            text-decoration: none;
+        }
+
+        .navbar a:hover {
+            background:  #58b4ae;
+            color: black;
+        }
+        form {
+            margin-bottom: 0px;
+        }
+
+        body {
+            margin: 0 0 0 0;
+        }
+
+        .head {
+            background-color: #bbe1fa;
+            padding-top: 20;
+
+        }
+
+        .container {
+            padding: 10px;
+            text-align: center;
+        }
+
+        input[type=text],
+        input[type=email],
+        input[type=date],
+        input[type=password]
+        input[type=file] {
+            width: 300px;
+            padding: 15px;
+            margin-left: 60px;
+            height: 40px;
+            margin: 5px 0 22px 0;
+            display: inline-block;
+            border: none;
+            background: #f1f1f1;
+        }
+
+        input[type=text]:focus,
+        input[type=email]:focus,
+        input[type=date]:focus,
+        input[type=password]:focus {
+            background-color: #ddd;
+            outline: none;
+        }
+
+        .log {
+            font-size: 16px;
+            width: 150px;
+            position: static;
+            display: inline-block;
+        }
+
+        .divback{
+            width: 60%;
+            margin: 0 auto 10;
+            padding: 10 0;
+            border-radius: 20px;
+            background: rgb(103,248,250);
+            background: linear-gradient(0deg, rgba(103,248,250,0.8407738095238095) 0%, rgba(255,235,192,0.8855917366946778) 77%);
+        } 
+
+        .rdbtndiv{
+            font-size: 20px;
+            margin-bottom: 20px;
+            margin-top: 30px;
+        }
+
+        .loginbtn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 14px 18px;
+            margin: 18px 0;
+            border: none;
+            cursor: pointer;
+            width: 14%;
+            opacity: 0.9;
+            border-radius: 25px;
+            margin-bottom: 40px;
+        }
+
+        .loginbtn:hover {
+            opacity: 1;
+        }
+
+        #customers {
+            font-family: Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            width: 50%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        #customers td, #customers th {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        #customers tr:nth-child(even){background-color: #f2f2f2;}
+
+        #customers tr:hover {background-color: #ddd;}
+
+        #customers th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #065c6f;
+            color: white;
+            font-size: 16px;
+            font-weight: lighter;
+        }
+
+        .td1{
+            font-weight: 550;
+            width: 200;
+        }
+
+        a {
+            color: dodgerblue;
+        }
+        
+        .success {
+            padding: 12px;
+            border-radius: 3px;
+            font-size: 1.2rem;
+            margin-bottom: 16px;
+            color: black;
+            background-color: #bedbbb;
+        }
+
+        .error {
+            padding: 12px;
+            border-radius: 3px;
+            font-size: 1.2rem;
+            margin-bottom: 16px;
+            background-color: #ce6262;
+            color: black;
+    }
+    </style>
+</head>
+
+<body>
+        <div class="navbar">
+            <a href="/odashboard" style="margin-left: 20;">Back to Home</a>
+            <p style="font-size: 20; color: white; margin: 0 0 0 590; padding: 19 16; font-family: 'Playfair Display', serif;">FIND DETAILS</p>
+        </div>
+        <div style="margin-top: 70;">
+            {% for category, message in get_flashed_messages(with_categories=True) %}
+            <div class={{category}}>{{ message }}</div>
+            {% endfor %}
+        </div> 
+        <form method="POST">
+            <div class="container">
+                <div class="divback">
+                <div class="rdbtndiv">
+                    <span style="margin-right: 50px;" >
+                        <input type="radio" name="searchfor" value="donor">
+                        <label for="donor">Donor</label>
+                    </span>
+                    <span > 
+                        <input type="radio" name="searchfor" value="patient">
+                        <label for="patient">Patient</label>
+                    </span>   
+                </div>
+                <label class="log" for="userid">Aadhar ID :</label>
+                <input class="log" type="text" name="userid">
+                <input class="loginbtn" type="submit" style="margin-left: 30;" name = "but" value = "SEARCH">
+            </div>
+            {% if disp %}
+                {% if patient %}
+                <div id = patient>
+                    <table id="customers">
+                        {% for x in a %}
+                        <tr>
+                            <td class="td1">Aadhar No :</td>
+                            <td>{{x['patient_id']}}</td>
+                        </tr>
+                        <tr>
+                            <td class="td1">Full Name :</td>
+                            <td>{{x['pname']}}</td>
+                        </tr>
+                        <tr>
+                            <td class="td1">Role :</td>
+                            <td>Patient</td>
+                        </tr>
+                        <tr>
+                            <td class="td1">Organ requested:</td>
+                            <td>{{x['organ_required']}}</td>
+                        </tr>
+                        <tr>
+                            <td class="td1">Phone number :</td>
+                            <td>{{x['phone_num']}}</td>
+                        </tr>
+                        <tr>
+                            <td class="td1">State :</td>
+                            <td>{{x['state']}}</td>
+                        </tr>
+                        <tr>
+                            <td class="td1">Hospital :</td>
+                            <td>{{x['hname']}}, {{x['hospital.district']}}, {{x['hospital.state']}}</td>
+                        </tr>
+                        <tr>
+                            <td class="td1">Report :</td>
+                            <td><a href="/download/{{x['preport']}}">Download</a></td>
+                        </tr>
+                        {% endfor %}
+                    </table><br>
+                    <input class="loginbtn" type="submit" name = "but" value = "Delete Patient">
+                    <input class="loginbtn" type="submit" style="margin-left: 30;" name = "but" value = "Update">
+                </div>
+                {% elif donor %}
+                <div id = donor>
+                    <table id="customers">
+                        {% for t in a %}
+                        <tr>
+                            <td class="td1">Aadhar No :</td>
+                            <td>{{t['donor_id']}}</td>
+                        </tr>
+                        <tr>
+                            <td class="td1">Full Name :</td>
+                            <td>{{t['dname']}}</td>
+                        </tr>
+                        <tr>
+                            <td class="td1">Role :</td>
+                            <td>Donor</td>
+                        </tr>
+                        <tr>
+                            <td class="td1">Phone number :</td>
+                            <td>{{t['phone_num']}}</td>
+                        </tr>
+                        <tr>
+                            <td class="td1">Organ Donated :</td>
+                            <td>{{t['organtype']}}</td>
+                        </tr>
+                        <tr>
+                            <td class="td1">Donation type :</td>
+                            <td>{{t['typeofdonation']}}</td>
+                        </tr>
+                        <tr>
+                            <td class="td1">Report :</td>
+                            <td><a href="/download/{{t['dreport']}}">Download</a></td>
+                        </tr>
+                        {% endfor %}
+                    </table><br>
+                    <input class="loginbtn" type="submit" name = "but" value = "Delete Donor">
+                    <input class="loginbtn" type="submit" style="margin-left: 30;" name = "but" value = "Update">
+                </div>
+                {% endif %}
+            {% endif %}    
+        </div>
+        </form>
+    </body>
+</html>

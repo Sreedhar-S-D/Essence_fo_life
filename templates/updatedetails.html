@@ -1,0 +1,209 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Report</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&display=swap" rel="stylesheet">
+    <style>
+        .i1
+        {
+            margin: 20px;
+        }
+        .navbar {
+            overflow: hidden;
+            background-color: #333;
+            position: fixed; 
+            top: 0;
+            width: 100%; 
+        }
+
+        .navbar a {
+            float: left;
+            display: block;
+            color: #f2f2f2;
+            text-align: center;
+            padding: 23px 16px; 
+            text-decoration: none;
+        }
+
+        .navbar a:hover {
+            background:  #58b4ae;
+            color: black;
+        }
+
+        form {
+            margin-bottom: 0px;
+        }
+
+        body {
+            margin: 0 0 0 0;
+        }
+
+        .head {
+            background-color: #bbe1fa;
+            padding-top: 20;
+        }
+
+        .customer_details {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        textarea {
+            width: 300px;
+            padding: 15px;
+            margin-left: 60px;
+            margin: 5px 0 22px 0;
+            display: inline-block;
+            border: none;
+            background: #f1f1f1;
+        }
+
+        textarea:focus {
+            background-color: #ddd;
+            outline: none;
+        }
+
+        input[type=text],
+        input[type=email],
+        input[type=date],
+        input[type=password] 
+        input[type=file]
+        {
+            width: 300px;
+            padding: 15px;
+            margin-left: 60px;
+            height: 40px;
+            margin: 5px 0 22px 0;
+            display: inline-block;
+            border: none;
+            background: #f1f1f1;
+        }
+
+        input[type=text]:focus,
+        input[type=email]:focus,
+        input[type=date]:focus,
+        input[type=password]:focus {
+            background-color: #ddd;
+            outline: none;
+        }
+
+        select{
+                width: 300;
+                height: 30;
+                font-size: 14;
+            }
+
+        .l1 {
+            width: 200px;
+            position: static;
+            display: inline-block;
+        }
+
+        /* Overwrite default styles of hr */
+        hr {
+            border: 1px solid #f1f1f1;
+            margin-bottom: 25px;
+        }
+        
+        .divback{
+            width: 60%;
+            margin: 100 auto 10;
+            padding: 10 0;
+            border-radius: 20px;
+            background: rgb(103,248,250);
+            background: linear-gradient(0deg, rgba(103,248,250,0.8407738095238095) 0%, rgba(255,235,192,0.8855917366946778) 77%);
+        }
+
+        .loginbtn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 14px 18px;
+            margin: 18px 0;
+            border: none;
+            cursor: pointer;
+            width: 13%;
+            opacity: 0.9;
+            border-radius: 25px;
+            margin-bottom: 40px;
+        }
+
+        .loginbtn:hover {
+            opacity: 1;
+        }
+        a {
+            color: dodgerblue;
+        }
+
+        .bottom1 {
+            padding: 20px;
+            margin: 0px;
+        }
+        .success {
+            padding: 12px;
+            border-radius: 3px;
+            font-size: 1.2rem;
+            margin-bottom: 16px;
+            color: black;
+            background-color: #bedbbb;
+        }
+
+        .error {
+            padding: 12px;
+            border-radius: 3px;
+            font-size: 1.2rem;
+            margin-bottom: 16px;
+            background-color: #ce6262;
+            color: black;
+        }
+        </style>
+        </head>
+
+<body>
+    <div class="navbar">
+        <a href="/odashboard" style="margin-left: 20;">Back to Home</a>
+        <a href="/finddetails">Back to search</a>
+        <p style="font-size: 20; color: white; margin: 0 0 0 550; padding: 19 16; font-family: 'Playfair Display', serif;">UPDATE REPORT</p>
+    </div>
+    <div style="margin-top: 70;">
+        {% for category, message in get_flashed_messages(with_categories=True) %}
+        <div class={{category}}>{{ message }}</div>
+        {% endfor %}
+    </div>
+    <div class="divback">
+    <form id="cus" method="POST" enctype="multipart/form-data" action="">
+        <div class="customer_details">
+                <div id = patient>
+
+                {% if patient %}
+                <label class="l1" for="type">Role :</label>
+                <input type="text" name="type" value="Patient" readonly><br> 
+                {% for pvalue in values %}
+                <label class="l1" for="patient_id">Adhaar No :</label>
+                <input type="text" name="patient_id" value="{{pvalue['patient_id']}}" readonly><br>
+                <label class="l1" for="pname">Full Name : </label>
+                <input type="text" name="pname" value="{{pvalue['pname']}}" readonly><br>
+                {% endfor %}
+                {% elif donor %}
+                <label class="l1" for="type">Role :</label>
+                <input type="text" name="type" value="Donor" readonly><br> 
+                {% for dvalue in values %}
+                <label class="l1" for="donor_id">Adhaar No :</label>
+                <input type="text" name="donor_id" value="{{dvalue['donor_id']}}" readonly><br>
+                <label class="l1" for="dname">Full Name : </label>
+                <input type="text" name="dname" value="{{dvalue['dname']}}" readonly><br>
+                {% endfor %}
+                {% endif %}
+
+                <label class="l1" for="report">Report :</label>
+                <input type="file" name="report"><br><br>
+                <input class="loginbtn" type="submit" name = "update" value = "UPDATE">
+
+                </div>
+            </div>
+        </form>
+    </div>
+    </body>
+</html>

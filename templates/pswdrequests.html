@@ -1,0 +1,136 @@
+<html>
+    <head>
+        <title>Requests</title> 
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&display=swap" rel="stylesheet">
+        <style>
+            .i1
+        {
+            margin: 20px;
+        }
+        .navbar {
+            overflow: hidden;
+            background-color: #333;
+            position: fixed; 
+            top: 0;
+            width: 100%; 
+        }
+
+        .navbar a {
+            float: left;
+            display: block;
+            color: #f2f2f2;
+            text-align: center;
+            padding: 23px 16px; 
+            text-decoration: none;
+        }
+
+        .navbar a:hover {
+            background:  #58b4ae;
+            color: black;
+        }
+
+        body {
+            margin: 0 0 0 0;
+        }
+
+        #customers {
+            font-family: Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            width: 90%;
+            margin-left: auto;
+            margin-right: auto;
+            background-color: #f1f6f9;
+        }
+
+        #customers td, #customers th {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+        
+        #customers tr:hover {background-color: #ddd;}
+
+        #customers th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #065c6f;
+            color: white;
+            font-size: 16px;
+            font-weight: lighter;
+        }
+
+        .divclass{
+            margin-top: 80px;
+            align-items: center;
+        }
+
+        .success {
+            padding: 12px;
+            border-radius: 3px;
+            font-size: 1.2rem;
+            margin-bottom: 16px;
+            color: black;
+            background-color: #bedbbb;
+        }
+
+        .error {
+            padding: 12px;
+            border-radius: 3px;
+            font-size: 1.2rem;
+            margin-bottom: 16px;
+            background-color: #ce6262;
+            color: black;
+        }
+        </style>       
+    </head>
+
+    <body>
+        <div class="navbar">
+            <a href="/admin" style="margin-left: 20;">Back to Home</a>
+            <a style="font-size: 20; color: white; margin: 0 0 0 390; padding: 19 0; font-family: 'Playfair Display', serif;">PASSWORD CHANGE REQUESTS</a>
+        </div>
+        <div style="margin-top: 70;">
+            {% for category, message in get_flashed_messages(with_categories=True) %}
+            <div class={{category}}>{{ message }}</div>
+            {% endfor %}
+        </div>
+    <div class="divclass">
+    <form id="cus" method="POST" enctype="multipart/form-data" action=""> 
+        <p style="text-align: center; font-size: 24;">GOVERNMENT</p>
+        <table id="customers">
+            <tr style="font-family: 'Playfair Display', serif;">
+                <th>Username</th>
+                <th>State</th>
+                <th>Action</th>
+            </tr>
+        {%for g in grequests%}
+        <tr>
+            <td>{{g['login_id']}}</td>
+            <td>Government of {{g['state']}}</td>
+            <td> <a href="/gchangePassword/{{g['login_id']}}">Change</a> </td>
+        </tr>
+        {%endfor%}
+        </table> 
+        <br><br>
+        <p style="text-align: center; font-size: 24;">ORGANISATION</p>
+        <table id="customers">
+        <tr style="font-family: 'Playfair Display', serif;">
+            <th>Organisation ID</th>
+            <th>Organisation Name</th>
+            <th>Action</th>
+        </tr>
+        {%for o in orequests%}
+        <tr>
+            <td>{{o['login_id']}}</td>
+            <td>{{o['oname']}}</td>
+            <td> <a href="/ochangePassword/{{o['login_id']}}">Change</a> </td>
+        </tr>
+        {%endfor%}
+        </table>
+        <br><br>
+    </form>
+    </div>
+    </body>
+</html>	
+

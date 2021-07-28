@@ -1,0 +1,150 @@
+<html>
+    <head>
+        <title>Login</title>
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&display=swap" rel="stylesheet">
+        <style>
+            .i1
+            {
+                    margin: 20px;
+            }
+            .navbar 
+            {
+                overflow: hidden;
+                background-color: #333;
+                font-family: Arial;
+                margin-bottom: 50px;
+            }
+            .navbar a 
+            {
+                float: left;
+                font-size: 16px;
+                color: white;
+                text-align: center;
+                padding: 23px 16px;
+                text-decoration: none;
+            }
+            .navbar a:hover, .dropdown:hover .dropbtn 
+            {
+                background-color: #58b4ae;
+            }
+            form {
+                margin-bottom: 0px;
+            }
+    
+            body {
+                margin: 0 0 0 0;
+            }
+    
+            .head {
+                background-color: #bbe1fa;
+                padding-top: 20;
+    
+            }
+    
+            .container {
+                padding: 40px;
+                text-align: center;
+            }
+    
+            input[type=text],
+            input[type=email],
+            input[type=date],
+            input[type=password] {
+                width: 300px;
+                padding: 15px;
+                margin-left: 60px;
+                height: 40px;
+                margin: 5px 0 22px 0;
+                display: inline-block;
+                border: none;
+                background: #f1f1f1;
+            }
+    
+            input[type=text]:focus,
+            input[type=email]:focus,
+            input[type=date]:focus,
+            input[type=password]:focus {
+                background-color: #ddd;
+                outline: none;
+            }
+    
+            .log {
+                font-size: 16px;
+                width: 200px;
+                position: static;
+                display: inline-block;
+            }
+
+            .rdbtndiv{
+                font-size: 20px;
+                margin-bottom: 50px;
+                margin-top: 30px;
+            }
+
+            .loginbtn {
+                background-color: #4CAF50;
+                color: white;
+                padding: 14px 18px;
+                margin: 18px 0;
+                border: none;
+                cursor: pointer;
+                width: 10%;
+                border-radius: 25px;
+                opacity: 0.9;
+                margin-bottom: 40px;
+            }
+    
+            .loginbtn:hover {
+                opacity: 1;
+            }
+    
+            a {
+                color: dodgerblue;
+            }
+        
+    .success {
+        padding: 12px;
+        border-radius: 3px;
+        font-size: 1.2rem;
+        margin-bottom: 16px;
+        color: black;
+        background-color: #bedbbb;
+    }
+
+    .error {
+        padding: 12px;
+        border-radius: 3px;
+        font-size: 1.2rem;
+        margin-bottom: 16px;
+        background-color: #ce6262;
+        color: black;
+    }
+    </style>
+    </head>
+
+    <body>
+        {% for category, message in get_flashed_messages(with_categories=True) %}
+        <div class={{category}}>{{ message }}</div>
+        {% endfor %}
+        <div class="navbar">
+            <a href="/" style="margin-left: 20;">Back to Home</a>
+            <p style="color: white; margin-left: 620; font-family: 'Playfair Display', serif; font-size: 20;">GOVERNMENT</p>
+        </div>
+            
+        <form method="POST">
+            <div class="container">
+                <h1>Login</h1>
+                <label class="log" for="userid">User ID:</label>
+                <input class="log" type="text" name="userid">
+                <br>
+                <label class="log" for="password">Password :</label>
+                <input class="log" type="password" name="password">
+                <br>
+                <a style="margin-left: 420px;" href="/gchangePassword">Forgot Password?</a>
+                <br>
+                <input class="loginbtn" type="submit" value = "LOGIN">
+            </div>
+        </form>
+    </body>
+</html>

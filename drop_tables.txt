@@ -1,0 +1,10 @@
+drop table org_login;
+drop table org_pnumber;
+drop table hosp_pnumber;
+drop table transplantation;
+drop table organ_available;
+drop table donor;
+drop table patient;
+drop table doctor;
+drop table organisation;
+drop table hospital;

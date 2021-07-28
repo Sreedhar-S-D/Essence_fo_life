@@ -1,0 +1,109 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&display=swap" rel="stylesheet">
+    <style>
+        .i1
+        {
+            margin: 20px;
+        }
+        .navbar {
+            overflow: hidden;
+            background-color: #333;
+            position: fixed; 
+            top: 0;
+            width: 100%; 
+        }
+
+        .navbar a {
+            float: left;
+            display: block;
+            color: #f2f2f2;
+            text-align: center;
+            padding: 23px 16px;
+            text-decoration: none;
+        }
+
+        .navbar a:hover {
+            background: #58b4ae;
+            color: black;
+        }
+     
+        body {
+            margin: 0 0 0 0;
+        }
+
+        .divclass {
+            margin-top: 100px;
+        }
+
+        .success {
+            padding: 12px;
+            border-radius: 3px;
+            font-size: 1.2rem;
+            margin-bottom: 16px;
+            color: black;
+            background-color: #bedbbb;
+        }
+
+        .error {
+            padding: 12px;
+            border-radius: 3px;
+            font-size: 1.2rem;
+            margin-bottom: 16px;
+            background-color: #ce6262;
+            color: black;
+        }
+
+        .btn {
+            width: 250; 
+            height: 100; 
+            margin-right: 100; 
+            margin-bottom: 50;
+            background-color: #9f5f80;
+            border-radius: 25px;
+            font-size: 20;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .divbg {
+            background-image: url("static/images/dashboardimg.png");
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+        }
+
+    </style>
+</head>
+
+<body class="divbg">
+    <div class="navbar">
+        <a href="/">Logout</a>
+        <a style="font-size: 20; color: white; margin: 0 0 0 530; padding: 17 16; font-family: 'Playfair Display', serif;">HOME PAGE</a>
+        <a href="/searchwotid" style="margin-left: 420;">Search without ID</a>
+    </div>
+    <div style="margin-top: 70;">
+        {% for category, message in get_flashed_messages(with_categories=True) %}
+        <div class={{category}}>{{ message }}</div>
+        {% endfor %}
+    </div>
+    <div class="divclass">
+        {% for org in org %}
+            <p style="font-size: 30; margin-left: 520; font-weight: bold;">{{org['oname']}}</p>
+        {% endfor %}
+        <div style="margin-top: 30; margin-left: 350;">
+            <div style="display: inline-block;">
+                <button class="btn" onclick="window.location.href='/registerPatient' ">Patient Registration</button>
+                <button class="btn" onclick="window.location.href='/registerDonor' ">Donor Registration</button><br>
+                <button class="btn" style="background-color: #8db596;" onclick="window.location.href='/search' ">Search for list of Donors/Patients</button>
+                <button class="btn" style="background-color: #8db596;" onclick="window.location.href='/finddetails' ">Find Donor/Patient details</button><br>
+                <button class="btn" onclick="window.location.href='/transplantation' ">Add Transplantation Details</button>
+                <button class="btn" onclick="window.location.href='/analysis' ">Data Analysis</button><br>
+            </div>
+        </div>  
+    </div>
+</body>

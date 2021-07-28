@@ -1,0 +1,155 @@
+<html>
+    <head>
+        <title>Find Donor</title> 
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&display=swap" rel="stylesheet">
+        <style>
+            .i1
+        {
+            margin: 20px;
+        }
+        .navbar {
+            overflow: hidden;
+            background-color: #333;
+            position: fixed; 
+            top: 0;
+            width: 100%; 
+        }
+
+        .navbar a {
+            float: left;
+            display: block;
+            color: #f2f2f2;
+            text-align: center;
+            padding: 23px 16px; 
+            text-decoration: none;
+        }
+
+        .navbar a:hover {
+            background:  #58b4ae;
+            color: black;
+        }
+
+        body {
+            margin: 0 0 0 0;
+        }
+
+        #customers {
+            font-family: Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            width: 90%;
+            margin-left: auto;
+            margin-right: auto;
+            background-color: #f1f6f9;
+        }
+
+        #customers td, #customers th {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+        
+        #customers tr:hover {background-color: #ddd;}
+
+        #customers th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #065c6f;
+            color: white;
+            font-size: 16px;
+            font-weight: lighter;
+        }
+
+        .divclass{
+            margin-top: 80px;
+            align-items: center;
+        }
+
+        .success {
+            padding: 12px;
+            border-radius: 3px;
+            font-size: 1.2rem;
+            margin-bottom: 16px;
+            color: black;
+            background-color: #bedbbb;
+        }
+
+        .error {
+            padding: 12px;
+            border-radius: 3px;
+            font-size: 1.2rem;
+            margin-bottom: 16px;
+            background-color: #ce6262;
+            color: black;
+        }
+        </style>       
+    </head>
+
+    <body>
+        <div class="navbar">
+            <a href="/odashboard" style="margin-left: 20;">Back to Home</a>
+            {% if show %}
+            <a href="/search" >Back to search</a>
+            {% else %}
+            <a href="/searchwotid" >Back to search</a>
+            {% endif %}
+            <a style="font-size: 20; color: white; margin: 0 0 0 350; padding: 19 0; font-family: 'Playfair Display', serif;">LIST OF DONORS</a>
+            {% if show %}
+            <a href="/find/{{patid}}/patient" style="margin-left: 400;">Get patient details</a>
+            {% endif %}
+        </div>
+        <div style="margin-top: 70;">
+            {% for category, message in get_flashed_messages(with_categories=True) %}
+            <div class={{category}}>{{ message }}</div>
+            {% endfor %}
+        </div>
+    <div class="divclass">
+    <form id="cus" method="POST" enctype="multipart/form-data" action="">  
+        <table id="customers">
+        <tr style="font-family: 'Playfair Display', serif;">
+            <th>Aadhar ID</th>
+            <th>Donor Name</th>
+            <th>Age</th>
+            <th>Gender</th>
+            <th>Blood Group</th>
+            <th>Expiry</th>
+            <th>State</th>
+            <th>Organ Type</th>
+            <th>Donation Type</th>
+            <th>Report</th>
+        </tr>
+        {%for d in pddonors%}
+        <tr>
+            <td>{{d['donor_id']}}</td>
+            <td>{{d['dname']}}</td>
+            <td>{{d['age']}}</td>
+            <td>{{d['gender']}}</td>
+            <td>{{d['bloodgroup']}}</td>
+            <td>{{d['expiry']}}</td>
+            <td>{{d['state']}}</td>
+            <td>{{d['organtype']}}</td>
+            <td>{{d['typeofdonation']}}</td>
+            <td> <a href="/download/{{d['dreport']}}">Download</a> </td>
+        </tr>
+        {%endfor%}
+        {%for a in adonors%}
+        <tr>
+            <td>{{a['donor_id']}}</td>
+            <td>{{a['dname']}}</td>
+            <td>{{a['age']}}</td>
+            <td>{{a['gender']}}</td>
+            <td>{{a['bloodgroup']}}</td>
+            <td>----</td>
+            <td>{{a['state']}}</td>
+            <td>{{a['organtype']}}</td>
+            <td>{{a['typeofdonation']}}</td>
+            <td> <a href="/download/{{a['dreport']}}">Download</a> </td>
+        </tr>
+        {%endfor%}
+
+        </table>
+    </form>
+    </div>
+    </body>
+</html>	
+

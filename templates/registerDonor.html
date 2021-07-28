@@ -1,0 +1,283 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&display=swap" rel="stylesheet">
+    <style>
+        .i1
+        {
+            margin: 20px;
+        }
+        .navbar {
+            overflow: hidden;
+            background-color: #333;
+            position: fixed;
+            top: 0; 
+            width: 100%; 
+        }
+
+        .navbar a {
+            float: left;
+            display: block;
+            color: #f2f2f2;
+            text-align: center;
+            padding: 23px 16px; 
+            text-decoration: none;
+        }
+
+        .navbar a:hover {
+            background:  #58b4ae;
+            color: black;
+        }
+
+        form {
+            margin-bottom: 0px;
+        }
+
+        body {
+            margin: 0 0 0 0;
+        }
+
+        .head {
+            background-color: #bbe1fa;
+            padding-top: 20;
+
+        }
+
+        .customer_details {
+            text-align: center;
+            margin-top: 25px;
+        }
+
+        textarea {
+            width: 300px;
+            padding: 15px;
+            margin-left: 60px;
+            margin: 5px 0 22px 0;
+            display: inline-block;
+            border: none;
+            background: #f1f1f1;
+        }
+
+        textarea:focus {
+            background-color: #ddd;
+            outline: none;
+        }
+
+        input[type=text],
+        input[type=email],
+        input[type=date],
+        input[type=password] 
+        input[type=file]
+        input[type=datetime-local]{
+            width: 300px;
+            padding: 15px;
+            margin-left: 60px;
+            height: 40px;
+            margin: 5px 0 22px 0;
+            display: inline-block;
+            border: none;
+            background: #f1f1f1;
+        }
+
+        input[type=text]:focus,
+        input[type=email]:focus,
+        input[type=date]:focus,
+        input[type=password]:focus {
+            background-color: #ddd;
+            outline: none;
+        }
+
+        .l1 {
+            width: 200px;
+            position: static;
+            display: inline-block;
+        }
+
+        select{
+            width: 300;
+            height: 30;
+            font-size: 14;
+        }
+        
+        hr {
+            border: 1px solid #f1f1f1;
+            margin-bottom: 25px;
+        }
+
+        .registerbtn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 16px 20px;
+            margin: 8px 0;
+            border: none;
+            cursor: pointer;
+            width: 20%;
+            opacity: 0.9;
+            border-radius: 25px;
+            margin-bottom: 40px;
+        }
+
+        .registerbtn:hover {
+            opacity: 1;
+        }
+
+        .divback{
+            width: 55%;
+            border-radius: 20px;
+            padding: 10 0;
+            margin: 100 auto 20;
+            background: rgb(255,213,231);
+            background: radial-gradient(circle, rgba(255,213,231,0.9108018207282913) 0%, rgba(223,237,255,0.865983893557423) 100%);
+        }
+
+        a {
+            color: dodgerblue;
+        }
+
+        .bottom1 {
+            padding: 20px;
+            margin: 0px;
+        }
+        .success {
+            padding: 12px;
+            border-radius: 3px;
+            font-size: 1.2rem;
+            margin-bottom: 16px;
+            color: black;
+            background-color: #bedbbb;
+        }
+
+        .error {
+            padding: 12px;
+            border-radius: 3px;
+            font-size: 1.2rem;
+            margin-bottom: 16px;
+            background-color: #ce6262;
+            color: black;
+        }
+        </style>
+        </head>
+
+<body>
+    <div class="navbar">
+        <a href="/odashboard" style="margin-left: 20;">Back to Home</a>
+        <p style="font-size: 20; color: white; margin: 0 0 0 550; padding: 19 16; font-family: 'Playfair Display', serif;">DONOR REGISTRATION</p>
+    </div>
+    <div style="margin-top: 70;">
+        {% for category, message in get_flashed_messages(with_categories=True) %}
+        <div class={{category}}>{{ message }}</div>
+        {% endfor %}
+    </div>
+    <div class="divback">
+    <form id="cus" method="POST" enctype="multipart/form-data" action="">
+
+        <div class="customer_details">
+
+            <label class="l1" for="donor_id">Adhaar No :</label>
+            <input type="text" name="donor_id"><br>
+
+            <label class="l1" for="dname">Full Name : </label>
+            <input type="text" name="dname"><br>
+
+            <label class="l1" for="dateOfBirth">Date of birth :</label>
+            <input type="date" name="dateOfBirth"><br>
+
+            <label class="l1" for="phone_num">Phone Number :</label>
+            <input type="text" name="phone_num"><br>
+
+            <label class="l1" for="first_address">First Address :</label>
+            <textarea rows="3" form="cus" name="first_address" id="first_address" cols="30" ></textarea><br>
+
+            <label class="l1" for="district">District :</label>
+            <input type="text" name="district"><br>
+
+            <label class="l1" for="state">State :</label>
+            <select name="state" id="state">
+            {% for state in states %} 
+            <option value="{{state}}">{{state}}</option>
+            {% endfor %} 
+            </select><br><br>
+
+            <p>Please select your gender:</p>
+            <input type="radio" id="male" name="gender" value="male">
+            <label for="male">Male</label>
+            <input type="radio" id="female" name="gender" value="female">
+            <label for="female">Female</label>
+            <input type="radio" id="other" name="gender" value="other">
+            <label for="other">Other</label>
+            <br><br><br>
+
+            <label class="l1" for="bgroup">Blood group :</label>
+            <select name="bgroup" id="bgroup">
+                <option value="A+ve">A+ve</option>
+                <option value="A-ve">A-ve</option>
+                <option value="B+ve"> B+ve</option>
+                <option value="B-ve"> B-ve</option>
+                <option value="O+ve">O+ve</option>
+                <option value="O-ve">O-ve</option>
+                <option value="AB+ve">AB+ve</option>
+                <option value="AB-ve">AB-ve</option>               
+            </select> <br><br>
+
+            <label class="l1" for="donationtype">Donation type :</label>
+            <select name="donationtype" id="donationtype" onchange="yesnoCheck(this);"> 
+                <option value="xyz">---select---</option>
+                <option value="Post-death">Post-death</option>
+                <option value="Alive">Alive</option>            
+            </select> <br><br>
+
+            <script>
+                function yesnoCheck(that) {
+                    if (that.value == "Post-death") {
+                        document.getElementById("ifDead").style.display = "block";
+                        document.getElementById("ifAlive").style.display = "none";
+                    } else {
+                        document.getElementById("ifAlive").style.display = "block";
+                        document.getElementById("ifDead").style.display = "none";
+                    }
+                }
+            </script>
+
+            <div id="ifDead" style="display: none;">
+                <label class="l1" for="organtype">Organ Donated :</label>
+                <select name="organtype" id="organtype"> 
+                    <option value="Bone marrow">Bone marrow</option>
+                    <option value="Eye">Eye</option>
+                    <option value="Heart">Heart</option>
+                    <option value="Intestine">Intestine</option>
+                    <option value="Kidney">Kidney</option> 
+                    <option value="Liver">Liver</option>
+                    <option value="Lung">Lung</option>
+                    <option value="Pancreas">Pancreas</option>             
+                </select> <br><br>
+                <label class="l1" for="expiry">Expiry :</label>
+                <input type="datetime-local" name="expiry"><br><br><br>
+            </div>
+
+            <div id="ifAlive" style="display: none;">
+                <label class="l1" for="organtype2">Organ Donated :</label>
+                <select name="organtype2" id="organtype2"> 
+                    <option value="Bone marrow">Bone marrow</option>
+                    <option value="Intestine">Intestine</option>
+                    <option value="Kidney">Kidney</option> 
+                    <option value="Liver">Liver</option>
+                    <option value="Lung">Lung</option>
+                    <option value="Pancreas">Pancreas</option>             
+                </select> <br><br><br>
+            </div>
+
+            <label class="l1" for="dreport">Report :</label>
+            <input type="file" name="dreport"><br><br><br>
+
+            <button type="submit" name="submit_button" value="submit_registration"
+                class="registerbtn">Register Donor</button>
+        </div>
+    </form>
+   </div> 
+</body>
+
+<html lang="en">

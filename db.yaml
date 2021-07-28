@@ -1,0 +1,12 @@
+mysql_host: 'localhost'
+mysql_user: 'root'
+mysql_password: '1234'
+mysql_db: 'essence_of_life'
+mail_server: 'smtp.gmail.com'
+mail_port: '587'
+mail_use_ssl: True
+mail_username: ''
+mail_password: ''
+uploaded_photos_dest: 'static/reports'
+mysql_cursorclass: 'DictCursor'
+mongo_uri : 'mongodb://localhost:27017'

@@ -1,0 +1,225 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&display=swap" rel="stylesheet">
+    <style>
+        .i1
+        {
+            margin: 20px;
+        }
+        .navbar {
+            overflow: hidden;
+            background-color: #333;
+            position: fixed; /* Set the navbar to fixed position */
+            top: 0; /* Position the navbar at the top of the page */
+            width: 100%; /* Full width */
+        }
+
+        /* Links inside the navbar */
+        .navbar a {
+            float: left;
+            display: block;
+            color: #f2f2f2;
+            text-align: center;
+            padding: 23px 16px;
+            text-decoration: none;
+        }
+
+        /* Change background on mouse-over */
+        .navbar a:hover {
+            background:  #58b4ae;
+            color: black;
+        }
+
+        form {
+            margin-bottom: 0px;
+        }
+
+        body {
+            margin: 0 0 0 0;
+        }
+
+        .head {
+            background-color: #bbe1fa;
+            padding-top: 20;
+
+        }
+
+        .divback{
+            width: 55%;
+            border-radius: 20px;
+            padding: 15 0;
+            margin: 100 auto 20;
+            background: rgb(255,213,231);
+            background: radial-gradient(circle, rgba(255,213,231,0.9108018207282913) 0%, rgba(223,237,255,0.865983893557423) 100%);
+        }
+
+        .customer_details {
+            text-align: center;
+            margin-top: 25px;
+        }
+
+        textarea {
+            width: 300px;
+            padding: 15px;
+            margin-left: 60px;
+            margin: 5px 0 22px 0;
+            display: inline-block;
+            border: none;
+            background: #f1f1f1;
+        }
+
+        textarea:focus {
+            background-color: #ddd;
+            outline: none;
+        }
+
+        input[type=text],
+        input[type=email],
+        input[type=date],
+        input[type=password] {
+            width: 300px;
+            padding: 15px;
+            margin-left: 60px;
+            height: 40px;
+            margin: 5px 0 22px 0;
+            display: inline-block;
+            border: none;
+            background: #f1f1f1;
+        }
+
+        input[type=text]:focus,
+        input[type=email]:focus,
+        input[type=date]:focus,
+        input[type=password]:focus {
+            background-color: #ddd;
+            outline: none;
+        }
+
+        .l1 {
+            width: 200px;
+            position: static;
+            display: inline-block;
+        }
+
+        hr {
+            border: 1px solid #f1f1f1;
+            margin-bottom: 25px;
+        }
+
+        .registerbtn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 16px 20px;
+            margin: 8px 0;
+            border: none;
+            cursor: pointer;
+            width: 20%;
+            opacity: 0.9;
+            border-radius: 25px;
+            margin-bottom: 40px;
+        }
+
+        select{
+            width: 300;
+            height: 30;
+            font-size: 14;
+        }
+        .registerbtn:hover {
+            opacity: 1;
+        }
+
+        a {
+            color: dodgerblue;
+        }
+
+        .bottom1 {
+            padding: 20px;
+            margin: 0px;
+        }
+        .success {
+            padding: 12px;
+            border-radius: 3px;
+            font-size: 1.2rem;
+            margin-bottom: 16px;
+            color: black;
+            background-color: #bedbbb;
+        }
+
+        .error {
+            padding: 12px;
+            border-radius: 3px;
+            font-size: 1.2rem;
+            margin-bottom: 16px;
+            background-color: #ce6262;
+            color: black;
+        }
+        </style>
+        </head>
+
+    <body>
+    <div class="navbar">
+        <a href="/gdashboard" style="margin-left: 20;">Back to Home</a>
+        <p style="font-size: 20; color: white; margin: 0 0 0 550; padding: 19 16; font-family: 'Playfair Display', serif;">ORGANISATION  REGISTRATION</p>
+    </div>
+    <div style="margin-top: 70;">
+        {% for category, message in get_flashed_messages(with_categories=True) %}
+        <div class={{category}}>{{ message }}</div>
+        {% endfor %}
+    </div>
+    <div class="divback">
+    <form id="cus" method="POST" action="">
+
+        <div class="customer_details">
+            <label class="l1" for="org_id">Organisation ID :</label>
+            <input type="text" name="org_id"><br>
+
+            <label class="l1" for="oname">Organisation Name : </label>
+            <input type="text" name="oname"><br>
+
+            <label class="l1" for="head">Head of Organisation : </label>
+            <input type="text" name="head"><br>
+
+            <label class="l1" for="oemail">Organisation Email : </label>
+            <input type="email" name="oemail"><br>
+
+            <label class="l1" for="first_address">First Address :</label>
+            <textarea rows="3" form="cus" name="first_address" id="first_address" cols="30" rows="10"></textarea><br>
+
+            <label class="l1" for="district">District :</label>
+            <input type="text" name="district"><br>
+
+            <label class="l1" for="state">State :</label>
+            <select name="state" id="state">
+            {% for state in states %} 
+            <option value="{{state}}">{{state}}</option>
+            {% endfor %} 
+            </select><br><br>
+
+            <label class="l1" for="pincode">Pincode :</label>
+            <input type="text" name="pincode"><br>
+
+            <label class="l1" for="phone_num1">Phone Number 1:</label>
+            <input type="text" name="phone_num1"><br>
+            <label class="l1" for="phone_num2">Phone Number 2:</label>
+            <input type="text" name="phone_num2">
+            <br>
+
+            <label class="l1" for="pswd">Password :</label>
+            <input type="password" name="pswd"><br>
+            <label class="l1" for="re_enter_password">ReEnter Password :</label>
+            <input type="password" name="re_enter_password"><br>
+            <br>
+
+            <button type="submit" name="submit_button" value="submit_registration"
+                class="registerbtn">Register</button>
+        </div>
+    </form>
+    </div>   
+</body>
+
+<html lang="en">
