@@ -272,7 +272,7 @@ def ochangePassword():
                     receiver = eid
                     sender_password = ""
                     s.login(email, password) 
-                    TEXT = "Hello Organisation,\nAs per your request, the password for the organisation has been changed.\nThe new password is "+ipswd+".\nRequest you to keep it safe and reach out to us if there are any discrepencies.\n\n\nThank you\n\nAdmin\nEssence of Life"
+                    TEXT = "Hello Organisation,\nAs per your request, the password for the organisation has been changed."+".\nRequest you to keep it safe and reach out to us if there are any discrepencies.\n\n\nThank you\n\nAdmin\nEssence of Life"
                     SUBJECT = "New password"
                     message = 'Subject: {}\n\n{}'.format(SUBJECT, TEXT)
                     s.sendmail("", receiver, message) 
