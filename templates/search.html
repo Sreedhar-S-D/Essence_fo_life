@@ -142,7 +142,7 @@
 <body>
         <div class="navbar">
                 <a href="/odashboard" style="margin-left: 20; ">Back to Home</a>
-                <p style="font-size: 20; color: white; margin: 0 0 0 550; padding: 19 16; font-family: 'Playfair Display', serif;">SEARCH FOR Patients/Donors</p>
+                <p style="font-size: 20; color: white; margin: 0 0 0 550; padding: 19 16; font-family: 'Playfair Display', serif;">SEARCH FOR Recipients/Donors</p>
         </div>
         <div style="margin-top: 70;">
             {% for category, message in get_flashed_messages(with_categories=True) %}
@@ -172,7 +172,7 @@
                     </span>
                     <span > 
                         <input type="radio" name="searchfor" value="patients">
-                        <label for="patients">Patients</label>
+                        <label for="patients">Recipients</label>
                     </span>   
                 </div>
                 <input class="loginbtn" type="submit" value = "Search">
