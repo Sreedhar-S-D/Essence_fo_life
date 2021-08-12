@@ -27,6 +27,7 @@ app.config['MYSQL_CURSORCLASS'] = db['mysql_cursorclass']
 app.config['UPLOADED_PHOTOS_DEST'] = db['uploaded_photos_dest']
 
 mysql = MySQL(app)
+#Taking client details to MongoServer
 
 client = MongoClient(db['mongo_uri'])
 mongo = client['Essence-of-Life-main']
