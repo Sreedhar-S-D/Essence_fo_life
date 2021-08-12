@@ -14,3 +14,14 @@ You can also create a local cluster on MongoDb Atlas to access the mongodb part.
 Change username and password in db.yaml file to connect to mysql database and change the mongo_uri based on the circumstance.
 to include email functionality create a config file with username='your_username' and password='your_password'
 
+Install dependencies by executing following command in your window:
+'''
+pip install -r req.txt
+'''
+
+Run the following python command to execute project:
+'''
+python text.py
+'''
+You will see landing page on localhost:5000
+
